@@ -79,7 +79,8 @@ class CustomerApiTest extends TestCase
     public function testShouldImportCustomers()
     {
         Bus::fake();
-        $this->artisan('import:customers');
+        $this->post("/api/customers");
+        $this->seeStatusCode(200);
         Bus::assertDispatched(CustomersImportJob::class);
     }
 }
