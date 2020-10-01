@@ -1,7 +1,5 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +11,20 @@
 |
 */
 
+use Laravel\Lumen\Routing\Router;
+
+/** @var Router $router */
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'customers', 'uses'], function () use ($router) {
+        $router->get('/', ['uses' => 'CustomersController@index']);
+
+        $router->get('/{customerId}', ['uses' => 'CustomersController@show']);
+
+        $router->post('/', ['uses' => 'CustomersController@import']);
+    });
 });

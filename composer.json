@@ -6,7 +6,12 @@
     "type": "project",
     "require": {
         "php": "^7.3",
-        "laravel/lumen-framework": "^8.0"
+        "guzzlehttp/guzzle": "^7.1",
+        "laravel-doctrine/orm": "^1.7",
+        "laravel/lumen-framework": "^8.0",
+        "league/fractal": "^0.19.2",
+        "ext-json": "*",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
@@ -21,9 +26,9 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/"
-        ]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "preferred-install": "dist",
